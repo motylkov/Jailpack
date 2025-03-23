@@ -17,3 +17,21 @@
 - Зависимости
 - Поддержка `.jailignore` (как `.dockerignore`) если нужно
 
+### Деплой и оркестрация
+- `jailpack deploy -f deployment.yaml` — запуск Cage
+- Поддержка сети
+- `jailpack compose` — оркестрация нескольких Cage
+- Healthcheck
+
+### Хранение и безопасность
+- `jailpack push` / `pull` — отправка и получение **Cage**
+- Подпись Cage (GPG, sha256, ...)
+- Использование ZFS для хранения и клонирования Cage
+
+### Интеграция
+- Интеграция с `FreeBSD-Command-Manager`: вызов `jailpack` как backend
+
+### Документация и примеры
+- Руководство по миграции с Docker
+- Best practices для jail-контейнеризации
+- Примеры: Go, Python, Node.js, ...
