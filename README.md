@@ -7,7 +7,6 @@ A jail management tool inspired by Kubernetes and Docker, but tailored for FreeB
 - **Build applications** into portable containers (.cage.tar.gz)
 - **Run jails** from ready-made containers
 - **Manage** running jails
-- **Auto-detect** application type (Go, Python, Node.js)
 - **Simple configuration** via jailpack.yaml
 
 ## Installation
