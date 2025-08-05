@@ -1,3 +1,4 @@
+// Package commands provides CLI commands for Jailpack.
 package commands
 
 import (
@@ -9,6 +10,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// RunCmd returns the run command for Jailpack.
 func RunCmd() *cobra.Command {
 	var runName, runIP string
 
@@ -17,16 +19,16 @@ func RunCmd() *cobra.Command {
 		Short: "Run Cage",
 		Long:  "Extracts and runs jail from .cage.tar.gz",
 		Args:  cobra.ExactArgs(1),
-		RunE: func(cmd *cobra.Command, args []string) error {
+		RunE: func(_ *cobra.Command, args []string) error {
 			cageFile := args[0]
 			jailDir := filepath.Join("/usr/jails", runName)
 
-			fmt.Printf("📦 Extracting Cage: %s → %s\n", cageFile, jailDir)
+			fmt.Printf("Extracting Cage: %s → %s\n", cageFile, jailDir)
 			if err := run.ExtractAndRun(cageFile, jailDir, runName, runIP); err != nil {
 				return fmt.Errorf("run error: %w", err)
 			}
 
-			fmt.Printf("🎉 Cage '%s' successfully started\n", runName)
+			fmt.Printf("Cage '%s' successfully started\n", runName)
 			return nil
 		},
 	}

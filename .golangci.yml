@@ -1,45 +1,9 @@
+version: "2"
+
 run:
   timeout: 5m
   go: "1.22"
-
-linters:
-  enable:
-    - gofmt
-    - goimports
-    - govet
-    - errcheck
-    - staticcheck
-    - gosimple
-    - ineffassign
-    - unused
-    - misspell
-    - gosec
-    - gocyclo
-    - dupl
-    - goconst
-    - gocritic
-    - godot
-    - gomnd
-    - goprintffuncname
-    - gosec
-    - gosimple
-    - govet
-    - ineffassign
-    - lll
-    - misspell
-    - nakedret
-    - noctx
-    - nolintlint
-    - rowserrcheck
-    - staticcheck
-    - structcheck
-    - stylecheck
-    - typecheck
-    - unconvert
-    - unparam
-    - unused
-    - varcheck
-    - whitespace
+  modules-download-mode: readonly
 
 linters-settings:
   gocyclo:
@@ -49,12 +13,16 @@ linters-settings:
   goconst:
     min-len: 2
     min-occurrences: 3
-  gomnd:
-    checks: argument,case,condition,operation,return,assign
-  lll:
-    line-length: 140
   misspell:
     locale: US
+  lll:
+    line-length: 140
+  goimports:
+    local-prefixes: FreeBSD-Command-manager
+  forbidigo:
+    rules:
+      - name: println
+        pattern: ^println$
   gocritic:
     enabled-tags:
       - diagnostic
@@ -63,38 +31,77 @@ linters-settings:
       - performance
       - style
     disabled-checks:
-      - dupImport # https://github.com/go-critic/go-critic/issues/845
+      - dupImport
       - ifElseChain
       - octalLiteral
       - whyNoLint
       - wrapperFunc
 
+linters:
+  disable-all: true
+  enable:
+    - bodyclose
+    - copyloopvar
+    - dogsled
+    - dupl
+    - errcheck
+    - exhaustive
+    - gochecknoinits
+    - goconst
+    - gocritic
+    - gocyclo
+    - goheader
+    - mnd
+    - gomodguard
+    - goprintffuncname
+    - gosec
+    - govet
+    - ineffassign
+    - makezero
+    - misspell
+    - nakedret
+    - noctx
+    - nolintlint
+    - prealloc
+    - predeclared
+    - promlinter
+    - revive
+    - rowserrcheck
+    - staticcheck
+    - thelper
+    - tparallel
+    - unconvert
+    - unparam
+    - unused
+    - whitespace
+    - wrapcheck
+
 issues:
   exclude-rules:
     - path: _test\.go
       linters:
-        - gomnd
-        - gocyclo
-        - dupl
+        - mnd
         - goconst
-        - gosec
-        - gocritic
-        - goprintffuncname
-        - gosimple
-        - govet
-        - ineffassign
+        - dupl
+        - funlen
+        - gocyclo
         - lll
-        - misspell
-        - nakedret
-        - noctx
-        - nolintlint
-        - rowserrcheck
-        - staticcheck
-        - structcheck
-        - stylecheck
-        - typecheck
-        - unconvert
-        - unparam
-        - unused
-        - varcheck
-        - whitespace 
+        - thelper
+        - tparallel
+    - path: cmd/
+      linters:
+        - mnd
+        - goconst
+        - dupl
+        - funlen
+        - gocyclo
+        - lll
+    # Exclude gosec warnings for CLI application
+    - path: internal/build/build\.go
+      linters:
+        - gosec
+    - path: internal/run/run\.go
+      linters:
+        - gosec
+  max-issues-per-linter: 0
+  max-same-issues: 0

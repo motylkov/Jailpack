@@ -1,3 +1,4 @@
+// Package cmd implements the main CLI entry point for Jailpack.
 package cmd
 
 import (
@@ -8,11 +9,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// Execute runs the root command for Jailpack.
 func Execute() {
 	rootCmd := &cobra.Command{
 		Use:   "jailpack",
 		Short: "A tool for jail management",
-		Long:  `Jailpack is a tool for FreeBSD jail management and its philosophy: simplicity, stability, performance, security.`,
+		Long:  `Jailpack is a tool for FreeBSD jail management`,
 	}
 
 	rootCmd.AddCommand(commands.BuildCmd())

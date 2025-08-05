@@ -1,3 +1,4 @@
+// Package list provides functions for listing running jails.
 package list
 
 import (
@@ -5,7 +6,7 @@ import (
 	"os/exec"
 )
 
-// ShowJails shows running jails
+// ShowJails prints the list of running jails.
 func ShowJails() error {
 	out, err := exec.Command("jls").Output()
 	if err != nil {
