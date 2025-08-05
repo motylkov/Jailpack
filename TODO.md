@@ -1,37 +1,37 @@
 # Jailpack
 
-Инструмент для управления jail, вдохновлённый Kubernetes и Docker, но заточенный под FreeBSD и его философию: простота, стабильность, производительность, безопасность.
+A tool for jail management, inspired by Kubernetes and Docker, but tailored for FreeBSD and its philosophy: simplicity, stability, performance, security.
 
-### Цели по разработке
+### Development Goals
 
-- Создать CLI с Cobra: jailpack build, run, deploy, list, logs, shell, push, pull, destroy
-- Реализовать jailpack build — упаковка приложения в .jail.tar.gz cage
-- Реализовать jailpack run — запуск cage как jail
-- Реализовать jailpack list — показ запущенных jail (через jls)
-- Реализовать jailpack logs и shell — доступ к логам и оболочке
-- Добавить поддержку флагов: --name, --ip, --port, --env, --output
+- Create CLI with Cobra: jailpack build, run, deploy, list, logs, shell, push, pull, destroy
+- Implement jailpack build — packaging application into .jail.tar.gz cage
+- Implement jailpack run — running cage as jail
+- Implement jailpack list — showing running jails (via jls)
+- Implement jailpack logs and shell — access to logs and shell
+- Add support for flags: --name, --ip, --port, --env, --output
 
-### Сборка и Cage
-- Поддержка `jailpack.yaml` для декларативной конфигурации
-- Создание **Cage** `.jail.tar.gz` или `.cage.tar.gz` с `rootfs/`, `config.json`, `startup.sh` (или другие варианты)
-- Зависимости
-- Поддержка `.jailignore` (как `.dockerignore`) если нужно
+### Build and Cage
+- Support for `jailpack.yaml` for declarative configuration
+- Create **Cage** `.jail.tar.gz` or `.cage.tar.gz` with `rootfs/`, `config.json`, `startup.sh` (or other variants)
+- Dependencies
+- Support for `.jailignore` (like `.dockerignore`) if needed
 
-### Деплой и оркестрация
-- `jailpack deploy -f deployment.yaml` — запуск Cage
-- Поддержка сети
-- `jailpack compose` — оркестрация нескольких Cage
+### Deployment and Orchestration
+- `jailpack deploy -f deployment.yaml` — running Cage
+- Network support
+- `jailpack compose` — orchestration of multiple Cages
 - Healthcheck
 
-### Хранение и безопасность
-- `jailpack push` / `pull` — отправка и получение **Cage**
-- Подпись Cage (GPG, sha256, ...)
-- Использование ZFS для хранения и клонирования Cage
+### Storage and Security
+- `jailpack push` / `pull` — sending and receiving **Cage**
+- Cage signing (GPG, sha256, ...)
+- Using ZFS for storing and cloning Cages
 
-### Интеграция
-- Интеграция с `FreeBSD-Command-Manager`: вызов `jailpack` как backend
+### Integration
+- Integration with `FreeBSD-Command-Manager`: calling `jailpack` as backend
 
-### Документация и примеры
-- Руководство по миграции с Docker
-- Best practices для jail-контейнеризации
-- Примеры: Go, Python, Node.js, ...
+### Documentation and Examples
+- Migration guide from Docker
+- Best practices for jail containerization
+- Examples: Go, Python, Node.js, ... 
